@@ -8,13 +8,6 @@ from cride.utils.models import CRideModels
 
 
 class Circle(CRideModels):
-    """Circle model.
-
-    A circle is a private group where rides are offered and taken
-    by its members. To join a circle a user must receive an unique
-    invitation code from a existing circle member.
-    """
-
     name = models.CharField('circle name', max_length=140)
     slug_name = models.SlugField(unique=True, max_length=40)
 
@@ -32,31 +25,23 @@ class Circle(CRideModels):
     rides_taken = models.PositiveIntegerField(default=0)
 
     verified = models.BooleanField(
-        'verified circle',
-        default=False,
-        help_text='Verified circles are also known as official communities.'
+        default=False
     )
 
     is_public = models.BooleanField(
-        default=True,
-        help_text='Public circles are listed in the main page so everyone know about their existence.'
+        default=True
     )
 
     is_limited = models.BooleanField(
-        'limited',
-        default=False,
-        help_text='Limited circles can grow up to a fixed number of members.'
+        default=False
     )
 
     members_limit = models.PositiveIntegerField(
-        default=0,
-        help_text='If circle is limited, this will be the limit of number of members.'
+        default=0
     )
 
     def __str__(self):
-        """Return circle name."""
         return self.name
 
     class Meta(CRideModels.Meta):
-        """Meta class."""
         ordering = ['-rides_taken', '-rides_offered']
