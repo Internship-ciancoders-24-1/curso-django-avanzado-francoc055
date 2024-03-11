@@ -6,12 +6,7 @@ from django.http import HttpResponse
 
 # Model
 from cride.circles.models import Circle
-from cride.rides.models import Ride
 
-# Utilities
-import csv
-from django.utils import timezone
-from datetime import datetime, timedelta
 
 
 @admin.register(Circle)
