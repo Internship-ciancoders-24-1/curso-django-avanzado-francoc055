@@ -14,6 +14,13 @@ class CustomUserAdmin(UserAdmin):
     list_display = ('email', 'username', 'first_name', 'last_name', 'is_staff', 'is_client', 'is_verified')
     list_filter = ('is_client', 'is_staff', 'created', 'modified')
 
+    fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        ('Personal info', {'fields': ('username', 'first_name', 'last_name')}),
+        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'is_verified', 'groups', 'user_permissions')}),
+        ('Important dates', {'fields': ('last_login', 'date_joined')}),
+    )
+
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
